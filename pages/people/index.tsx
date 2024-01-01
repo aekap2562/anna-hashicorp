@@ -4,7 +4,10 @@ import { PersonRecord, DepartmentRecord } from 'types'
 import BaseLayout from '../../layouts/base'
 import style from './style.module.css'
 import query from './query.graphql'
-import Title from './ContentHeader/Title'
+import Title from '../../components/contentHeader/Title'
+import SearchBar from 'components/search/SearchBar'
+import Card from 'components/card/Card'
+import { useMemo } from 'react'
 
 interface Props {
 	allPeople: PersonRecord[]
@@ -15,9 +18,28 @@ export default function PeoplePage({
 	allPeople,
 	allDepartments,
 }: Props): React.ReactElement {
+	const peopleDetails = useMemo(() => {
+		return allPeople.map((person) => {
+			return (
+				<div key={person.id}>
+					<Card
+						name={person.name}
+						title={person.title}
+						avatar={person.avatar?.url}
+						department={person.department.name}
+					/>
+				</div>
+			)
+		})
+	}, [allPeople])
+
 	return (
 		<main className="g-grid-container">
-			<Title />
+			<div>
+				<Title />
+				<SearchBar />
+				<div className={style.cardContainer}>{peopleDetails}</div>
+			</div>
 			<h2>People Data</h2>
 			<pre className={style.myData}>{JSON.stringify(allPeople, null, 2)}</pre>
 			<h2>Departments Data</h2>

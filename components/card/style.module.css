@@ -1,0 +1,44 @@
+.box {
+	border: 1px solid #c0c0c0;
+	background: #fff;
+	width: 280px;
+	height: 215px;
+	flex-shrink: 0;
+	margin: 10px;
+}
+
+.personAvatar {
+	border-radius: 250px;
+	align-items: 'center';
+	flex-shrink: 0;
+}
+
+.personName {
+	color: var(--hc-gray-3-text, #373942);
+	text-align: center;
+
+	/* Section 4 */
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 28px; /* 175% */
+}
+
+.personTitle {
+	color: var(--HC---Gray-4, #4e515d);
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.personDepartment {
+	color: var(--HC---Gray-4, #4e515d);
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+}

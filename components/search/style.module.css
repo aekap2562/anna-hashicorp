@@ -1,0 +1,9 @@
+.searchBar {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.inputField {
+	min-width: 300px;
+	min-height: 35px;
+}
