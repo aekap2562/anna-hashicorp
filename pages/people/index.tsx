@@ -20,9 +20,18 @@ export default function PeoplePage({
 	allDepartments,
 }: Props): React.ReactElement {
 	const [imageFilter, setImageFilter] = useState(false)
-	let filteredByImage: PersonRecord[]
+	const [searchValue, setSearchValue] = useState<string>('')
+	const filteredByImage: PersonRecord[] = allPeople.filter(
+		(person) => person.avatar?.url !== (null || undefined)
+	)
+	const searchFilter: PersonRecord[] = allPeople.filter((person) =>
+		person.name.includes(searchValue)
+	)
+	const searchAndImageFilter: PersonRecord[] = filteredByImage.filter(
+		(person) => person.name.includes(searchValue)
+	)
 
-	const handleClick = () => {
+	const handleImageCheckboxClick = () => {
 		if (imageFilter === false) {
 			setImageFilter(true)
 		} else {
@@ -30,12 +39,44 @@ export default function PeoplePage({
 		}
 	}
 
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value
+		const trimmedValue = value.trim()
+		setSearchValue(trimmedValue)
+	}
+
 	const peopleDetails = useMemo(() => {
 		if (imageFilter === true) {
-			filteredByImage = allPeople.filter(
-				(person) => person.avatar?.url !== (null || undefined)
-			)
+			//if person doesn't have an image AND name is searched
+			if (searchValue.length !== 0) {
+				return searchAndImageFilter.map((person) => {
+					return (
+						<div key={person.id}>
+							<Card
+								name={person.name}
+								title={person.title}
+								avatar={person.avatar?.url}
+								department={person.department.name}
+							/>
+						</div>
+					)
+				})
+			}
+			//if person doesn't have an image and there's no name search
 			return filteredByImage.map((person) => {
+				return (
+					<div key={person.id}>
+						<Card
+							name={person.name}
+							title={person.title}
+							avatar={person.avatar?.url}
+							department={person.department.name}
+						/>
+					</div>
+				)
+			})
+		} else if (searchValue.length !== 0) {
+			return searchFilter.map((person) => {
 				return (
 					<div key={person.id}>
 						<Card
@@ -61,15 +102,25 @@ export default function PeoplePage({
 				)
 			})
 		}
-	}, [allPeople, imageFilter])
+	}, [allPeople, imageFilter, searchValue, filteredByImage, searchFilter])
 
 	return (
 		<main className="g-grid-container">
 			<div>
 				<Title />
-				<SearchBar />
-				<CheckBox imageFilter={imageFilter} handleClick={handleClick} />
-				<div className={style.cardContainer}>{peopleDetails}</div>
+				<SearchBar
+					searchValue={searchValue}
+					handleInputChange={handleInputChange}
+				/>
+				<CheckBox
+					imageFilter={imageFilter}
+					handleClick={handleImageCheckboxClick}
+				/>
+				{peopleDetails.length === 0 ? (
+					<div className={style.noResults}>No results found.</div>
+				) : (
+					<div className={style.cardContainer}>{peopleDetails}</div>
+				)}
 			</div>
 			<h2>People Data</h2>
 			<pre className={style.myData}>{JSON.stringify(allPeople, null, 2)}</pre>

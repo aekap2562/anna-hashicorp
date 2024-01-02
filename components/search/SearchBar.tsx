@@ -1,6 +1,11 @@
 import style from './style.module.css'
 
-const SearchBar = () => {
+export interface Props {
+	searchValue: string
+	handleInputChange: () => void
+}
+
+const SearchBar = ({ searchValue, handleInputChange }) => {
 	return (
 		<>
 			<div className={style.searchBar}>
@@ -8,7 +13,9 @@ const SearchBar = () => {
 				<input
 					type="text"
 					className={style.inputField}
-					placeholder="Search people by name"
+					placeholder="Search people by name (case sensitive)"
+					value={searchValue}
+					onChange={handleInputChange}
 				/>
 			</div>
 		</>

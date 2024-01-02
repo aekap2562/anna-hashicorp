@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import style from './style.module.css'
 import placeHolderImg from '../images/placeHolderImg.png'
 
@@ -10,6 +10,20 @@ export interface Props {
 }
 
 const Card: FC<Props> = ({ name, title, avatar, department }) => {
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth)
+		}
+
+		window.addEventListener('resize', handleResize)
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	})
+
 	return (
 		<div className={style.box}>
 			<img
@@ -18,7 +32,11 @@ const Card: FC<Props> = ({ name, title, avatar, department }) => {
 			/>
 			<p className={style.personName}>{name}</p>
 			<p className={style.personTitle}>{title}</p>
-			<p className={style.personDepartment}>{department}</p>
+			{windowWidth >= 600 ? (
+				<p className={style.personDepartment}>{department}</p>
+			) : (
+				<></>
+			)}
 		</div>
 	)
 }
