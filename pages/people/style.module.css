@@ -36,3 +36,8 @@
 	font-weight: 400;
 	line-height: 28px; /* 200% */
 }
+
+.filterAndCards {
+	display: flex;
+	flex-direction: row;
+}

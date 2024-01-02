@@ -9,6 +9,8 @@ import SearchBar from 'components/search/SearchBar'
 import Card from 'components/card/Card'
 import { useMemo, useState } from 'react'
 import CheckBox from 'components/checkbox/CheckBox'
+import useMediaQuery from 'components/shared/useMediaQuery'
+import DepartmentFilter from 'components/departmentFilter/DepartmentFilter'
 
 interface Props {
 	allPeople: PersonRecord[]
@@ -19,6 +21,7 @@ export default function PeoplePage({
 	allPeople,
 	allDepartments,
 }: Props): React.ReactElement {
+	const isMobile = useMediaQuery('(max-width: 600px')
 	const [imageFilter, setImageFilter] = useState(false)
 	const [searchValue, setSearchValue] = useState<string>('')
 	const filteredByImage: PersonRecord[] = allPeople.filter(
@@ -116,11 +119,14 @@ export default function PeoplePage({
 					imageFilter={imageFilter}
 					handleClick={handleImageCheckboxClick}
 				/>
-				{peopleDetails.length === 0 ? (
-					<div className={style.noResults}>No results found.</div>
-				) : (
-					<div className={style.cardContainer}>{peopleDetails}</div>
-				)}
+				<div className={style.filterAndCards}>
+					{!isMobile && <DepartmentFilter />}
+					{peopleDetails.length === 0 ? (
+						<div className={style.noResults}>No results found.</div>
+					) : (
+						<div className={style.cardContainer}>{peopleDetails}</div>
+					)}
+				</div>
 			</div>
 			<h2>People Data</h2>
 			<pre className={style.myData}>{JSON.stringify(allPeople, null, 2)}</pre>

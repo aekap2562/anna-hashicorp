@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import style from './style.module.css'
 import placeHolderImg from '../images/placeHolderImg.png'
+import useMediaQuery from 'components/shared/useMediaQuery'
 
 export interface Props {
 	name?: string
@@ -10,20 +11,7 @@ export interface Props {
 }
 
 const Card: FC<Props> = ({ name, title, avatar, department }) => {
-	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-	useEffect(() => {
-		const handleResize = () => {
-			setWindowWidth(window.innerWidth)
-		}
-
-		window.addEventListener('resize', handleResize)
-
-		return () => {
-			window.removeEventListener('resize', handleResize)
-		}
-	})
-
+	const isMobile = useMediaQuery('(max-width: 600px')
 	return (
 		<div className={style.box}>
 			<img
@@ -32,7 +20,7 @@ const Card: FC<Props> = ({ name, title, avatar, department }) => {
 			/>
 			<p className={style.personName}>{name}</p>
 			<p className={style.personTitle}>{title}</p>
-			{windowWidth >= 600 ? (
+			{!isMobile ? (
 				<p className={style.personDepartment}>{department}</p>
 			) : (
 				<></>
