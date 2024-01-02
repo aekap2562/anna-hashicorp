@@ -1,0 +1,17 @@
+.checkBoxWithLabel {
+	text-align: center;
+	color: var(--HC---Gray-4, #4e515d);
+
+	/* Caption or Field Label */
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	margin-bottom: 40px;
+	align-content: center;
+}
+
+.checkBox {
+	width: 20px;
+	height: 20px;
+}

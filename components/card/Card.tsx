@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import style from './style.module.css'
+import placeHolderImg from '../images/placeHolderImg.png'
 
 export interface Props {
 	name?: string
@@ -12,7 +13,7 @@ const Card: FC<Props> = ({ name, title, avatar, department }) => {
 	return (
 		<div className={style.box}>
 			<img
-				src={avatar ? avatar : 'placeholder avatar'}
+				src={avatar ? avatar : placeHolderImg}
 				className={style.personAvatar}
 			/>
 			<p className={style.personName}>{name}</p>

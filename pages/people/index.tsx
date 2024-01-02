@@ -7,7 +7,8 @@ import query from './query.graphql'
 import Title from '../../components/contentHeader/Title'
 import SearchBar from 'components/search/SearchBar'
 import Card from 'components/card/Card'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import CheckBox from 'components/checkbox/CheckBox'
 
 interface Props {
 	allPeople: PersonRecord[]
@@ -18,26 +19,56 @@ export default function PeoplePage({
 	allPeople,
 	allDepartments,
 }: Props): React.ReactElement {
+	const [imageFilter, setImageFilter] = useState(false)
+	let filteredByImage: PersonRecord[]
+
+	const handleClick = () => {
+		if (imageFilter === false) {
+			setImageFilter(true)
+		} else {
+			setImageFilter(false)
+		}
+	}
+
 	const peopleDetails = useMemo(() => {
-		return allPeople.map((person) => {
-			return (
-				<div key={person.id}>
-					<Card
-						name={person.name}
-						title={person.title}
-						avatar={person.avatar?.url}
-						department={person.department.name}
-					/>
-				</div>
+		if (imageFilter === true) {
+			filteredByImage = allPeople.filter(
+				(person) => person.avatar?.url !== (null || undefined)
 			)
-		})
-	}, [allPeople])
+			return filteredByImage.map((person) => {
+				return (
+					<div key={person.id}>
+						<Card
+							name={person.name}
+							title={person.title}
+							avatar={person.avatar?.url}
+							department={person.department.name}
+						/>
+					</div>
+				)
+			})
+		} else {
+			return allPeople.map((person) => {
+				return (
+					<div key={person.id}>
+						<Card
+							name={person.name}
+							title={person.title}
+							avatar={person.avatar?.url}
+							department={person.department.name}
+						/>
+					</div>
+				)
+			})
+		}
+	}, [allPeople, imageFilter])
 
 	return (
 		<main className="g-grid-container">
 			<div>
 				<Title />
 				<SearchBar />
+				<CheckBox imageFilter={imageFilter} handleClick={handleClick} />
 				<div className={style.cardContainer}>{peopleDetails}</div>
 			</div>
 			<h2>People Data</h2>
