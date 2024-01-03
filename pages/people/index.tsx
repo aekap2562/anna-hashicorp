@@ -21,6 +21,9 @@ export default function PeoplePage({
 	allPeople,
 	allDepartments,
 }: Props): React.ReactElement {
+	//TODO (AK 01/02/2024): state management so state can persist
+	// even after a refresh. Attempted localStorage but using redux or
+	// something similar would be more ideal
 	const isMobile = useMediaQuery('(max-width: 600px')
 	const [imageFilter, setImageFilter] = useState(false)
 	const [searchValue, setSearchValue] = useState<string>('')
@@ -120,7 +123,7 @@ export default function PeoplePage({
 					handleClick={handleImageCheckboxClick}
 				/>
 				<div className={style.filterAndCards}>
-					{!isMobile && <DepartmentFilter />}
+					{!isMobile && <DepartmentFilter allDepartments={allDepartments} />}
 					{peopleDetails.length === 0 ? (
 						<div className={style.noResults}>No results found.</div>
 					) : (
@@ -128,12 +131,6 @@ export default function PeoplePage({
 					)}
 				</div>
 			</div>
-			<h2>People Data</h2>
-			<pre className={style.myData}>{JSON.stringify(allPeople, null, 2)}</pre>
-			<h2>Departments Data</h2>
-			<pre className={style.myData}>
-				{JSON.stringify(allDepartments, null, 2)}
-			</pre>
 		</main>
 	)
 }
