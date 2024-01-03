@@ -54,7 +54,9 @@
 	width: 8px;
 	height: 10px;
 	padding: 0;
-	background-image: url('/list-caret.svg'); /* place this file in the `public` folder */
+	background-image: url('../images/list-caret.svg'); /* place this file in the `public` folder 
+    AK 01/02/2024: I don't see a public folder so I added it in an images folder
+    that I created. */
 	background-repeat: no-repeat;
 	background-position: center;
 	transition: transform 0.15s ease;

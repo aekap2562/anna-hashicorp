@@ -1,16 +1,12 @@
 import classNames from 'classnames'
 import style from './style.module.css'
-import listCarat from '../images/list-caret.svg'
 
 export default function DepartmentTree() {
 	return (
 		<ul className={classNames(style.node)}>
 			<li>
-				<span className={classNames(style.caret, style.hiddenCaret)}></span>
-				<div style={{ display: 'flex', flexDirection: 'row' }}>
-					<img src={listCarat} />
-					<button className={classNames(style.departmentButton)}>Design</button>
-				</div>
+				<span className={classNames(style.caret, style.caret)}></span>
+				<button className={classNames(style.departmentButton)}>Design</button>
 			</li>
 			<li>
 				<button
@@ -40,7 +36,7 @@ export default function DepartmentTree() {
 						</ul>
 					</li>
 					<li>
-						<span className={classNames(style.caret, style.hiddenCaret)}></span>
+						<span className={classNames(style.caret, style.caret)}></span>
 						<button className={classNames(style.departmentButton)}>
 							Web dev
 						</button>
@@ -60,7 +56,7 @@ export default function DepartmentTree() {
 				<button className={classNames(style.departmentButton)}>IT</button>
 			</li>
 			<li>
-				<span className={classNames(style.caret, style.hiddenCaret)}></span>
+				<span className={classNames(style.caret, style.caret)}></span>
 				<button className={classNames(style.departmentButton)}>Legal</button>
 			</li>
 			<li>
@@ -70,7 +66,7 @@ export default function DepartmentTree() {
 				</button>
 			</li>
 			<li>
-				<span className={classNames(style.caret, style.hiddenCaret)}></span>
+				<span className={classNames(style.caret, style.caret)}></span>
 				<button className={classNames(style.departmentButton)}>Research</button>
 			</li>
 			<li>
