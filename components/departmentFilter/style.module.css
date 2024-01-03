@@ -1,0 +1,79 @@
+.filterDepartmentTitle {
+	color: var(--hc-gray-3-text, #373942);
+	text-align: center;
+
+	/* Section 4 */
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 28px; /* 175% */
+}
+
+.departmentButton {
+	font-size: inherit;
+	font-family: inherit;
+	border: none;
+	background: none;
+	color: #484848;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.active {
+	color: var(--brand);
+}
+
+.node {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	& li {
+		padding: 4px 0;
+	}
+}
+
+.subBranch {
+	padding-top: 8px;
+
+	& li {
+		border-left: 1px solid #cbcbcb;
+		margin-left: 15px;
+	}
+}
+
+.caret {
+	display: inline-block;
+	position: relative;
+	left: -3.5px;
+	background: white;
+	border: none;
+	width: 8px;
+	height: 10px;
+	padding: 0;
+	background-image: url('../images/list-caret.svg'); /* place this file in the `public` folder 
+    AK 01/02/2024: I don't see a public folder so I added it in an images folder
+    that I created. */
+	background-repeat: no-repeat;
+	background-position: center;
+	transition: transform 0.15s ease;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.expandedCaret {
+	transform: rotate(90deg);
+}
+
+.hiddenCaret {
+	opacity: 0;
+
+	&:hover {
+		cursor: none;
+	}
+}

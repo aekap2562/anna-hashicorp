@@ -1,0 +1,50 @@
+.box {
+	border: 1px solid #c0c0c0;
+	background: #fff;
+	width: 280px;
+	height: 215px;
+	flex-shrink: 0;
+	margin: 10px;
+}
+
+.personAvatar {
+	border-radius: 250px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	flex-shrink: 0;
+	max-width: 106px;
+	max-height: 106px;
+}
+
+.personName {
+	color: var(--hc-gray-3-text, #373942);
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	margin-top: 6px;
+	margin-bottom: 2px;
+}
+
+.personTitle {
+	color: var(--HC---Gray-4, #4e515d);
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	margin: 2px;
+}
+
+.personDepartment {
+	color: var(--HC---Gray-4, #4e515d);
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	margin: 2px;
+}

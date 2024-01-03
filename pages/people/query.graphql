@@ -9,12 +9,31 @@ query {
 	allDepartments(first: 100) {
 		name
 		parent {
-			id
+			name
+		}
+		children {
+			name
+			children {
+				name
+				children {
+					name
+					parent {
+						name
+					}
+				}
+				parent {
+					name
+				}
+			}
+			parent {
+				name
+			}
 		}
 	}
 
 	allPeople(first: 100) {
 		name
+		title
 		avatar {
 			url
 		}
