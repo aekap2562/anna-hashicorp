@@ -21,13 +21,12 @@
 .personName {
 	color: var(--hc-gray-3-text, #373942);
 	text-align: center;
-
-	/* Section 4 */
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 600;
-	line-height: 28px; /* 175% */
+	margin-top: 6px;
+	margin-bottom: 2px;
 }
 
 .personTitle {
@@ -37,6 +36,7 @@
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;
+	margin: 2px;
 }
 
 .personDepartment {
@@ -46,4 +46,5 @@
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;
+	margin: 2px;
 }

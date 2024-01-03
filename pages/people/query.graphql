@@ -15,6 +15,7 @@ query {
 
 	allPeople(first: 100) {
 		name
+		title
 		avatar {
 			url
 		}
