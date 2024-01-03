@@ -9,11 +9,10 @@ const SearchBar = ({ searchValue, handleInputChange }) => {
 	return (
 		<>
 			<div className={style.searchBar}>
-				<span>&#128269;</span>
 				<input
 					type="text"
 					className={style.inputField}
-					placeholder="Search people by name (case sensitive)"
+					placeholder="&#128269; Search people by name (case sensitive)"
 					value={searchValue}
 					onChange={handleInputChange}
 				/>
